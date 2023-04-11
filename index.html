@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>PAGE</title>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="ttl">DAISUKE MIYOSHI</h1>
+    </header>
+    <div class="wrapper">
+      <article>
+        <section>
+          <h2 class="subttl">About</h2>
+          <div class="flexbox">
+            <div class="profile">
+              <img
+                src="https://lohas.nicoseiga.jp/thumb/3936366i?"
+                alt="自己紹介画像"
+                class="profile__img"
+                id="profile__img"
+              />
+            </div>
+            <dl class="detail detail01">
+              <dt class="detail__ttl">名前</dt>
+              <dd class="detail__list">三善大輔（みよしだいすけ）</dd>
+
+              <dt class="detail__ttl">出身地</dt>
+              <dd class="detail__list">福岡県福岡市</dd>
+
+              <dt class="detail__ttl">誕生日</dt>
+              <dd class="detail__list">10月23日</dd>
+
+              <dt class="detail__ttl">自己紹介</dt>
+              <dd class="detail__list">プログラミング勉強中です</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="subttl">Skill</h2>
+          <dl class="detail">
+            <dt class="detail__ttl">フロント</dt>
+            <dd class="detail__list">
+              vue<br />
+              react
+            </dd>
+
+            <dt class="detail__ttl">バック</dt>
+            <dd class="detail__list">
+              python<br />
+              c++
+            </dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2 class="subttl">My favorite</h2>
+          <dl class="detail">
+            <dt class="detail__ttl">漫画</dt>
+            <dd class="detail__list">
+              ダイの大冒険<br />
+              ドラゴンボール<br />
+              ワールドトリガー
+            </dd>
+
+            <dt class="detail__ttl">映画</dt>
+            <dd class="detail__list">
+              ミスト<br />
+              SAW
+            </dd>
+
+            <dt class="detail__ttl">趣味</dt>
+            <dd class="detail__list">
+              ポケモン<br />
+              <span class="color">太鼓の達人</span>
+            </dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2 class="subttl">ランダムポケモン</h2>
+          <dl class="detail">
+            <dt class="detail__ttl" id="pokemonName"></dt>
+            <div id="pokemonImg"></div>
+          </dl>
+        </section>
+      </article>
+    </div>
+  </body>
+  <script>
+    const getPokemon = async() => { 
+      var random = Math.floor( Math.random() * 801);
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=800");
+      const data = await res.json();
+      const pokemonName = await data.results[random].name;
+      document.getElementById("pokemonName").innerHTML = pokemonName;
+
+      var innner_element = document.getElementById("pokemonImg");
+      var element = document.createElement("img"); 
+      random = random + 1;
+      element.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + random + ".png";
+      innner_element.appendChild(element);
+      console.log(data.results) 
+    }
+    getPokemon();
+  </script>
+</html>
+
